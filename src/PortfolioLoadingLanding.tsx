@@ -1,13 +1,13 @@
-
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function PortfolioLoadingLanding() {
-  const [loading, setLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
+      setProgress((prev: number) => {
         if (prev >= 100) {
           clearInterval(interval);
           setTimeout(() => setLoading(false), 500);
@@ -109,7 +109,7 @@ export default function PortfolioLoadingLanding() {
             whileHover={{ scale: 1.05 }}
             className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-2xl text-lg shadow-lg"
           >
-            🚀 Vamos Construir Algo Grande
+            🚀 Estou Pronto Para Contribuir
           </motion.button>
         </div>
       </motion.div>

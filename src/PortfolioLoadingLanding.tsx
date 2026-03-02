@@ -1,152 +1,151 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function PortfolioLoadingLanding() {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [progress, setProgress] = useState<number>(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev: number) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setLoading(false), 500);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 250);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-purple-950 to-black text-white">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl font-bold mb-6 text-center"
-        >
-          Inicializando Sistema...
-        </motion.h1>
-
-        <div className="w-72 h-3 bg-gray-800 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-purple-600"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ ease: "easeInOut" }}
-          />
-        </div>
-
-        <p className="mt-4 text-sm text-gray-400">{progress}% Carregado</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white px-6 py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-6xl mx-auto"
-      >
+      <div className="max-w-7xl mx-auto">
+
         {/* HERO */}
-        <section className="mb-20">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-purple-500">
-            Juliano Mabiala
-          </h1>
-          <p className="text-xl text-gray-300 mb-6">
-            Desenvolvedor Frontend & Criador de Soluções Digitais
-          </p>
-          <p className="text-gray-400 max-w-3xl leading-relaxed">
-            Especializado na construção de plataformas modernas, escaláveis e focadas em performance.
-            Transformo ideias em sistemas funcionais utilizando tecnologias atuais e arquitetura bem estruturada.
-          </p>
+        <section className="grid md:grid-cols-2 items-center gap-12 mb-24">
+
+          <div>
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-purple-500">
+              Juliano Mabiala
+            </h1>
+
+            <h2 className="text-2xl text-gray-300 mb-6">
+              Desenvolvedor Frontend & Criador de Soluções Digitais
+            </h2>
+
+            <p className="text-gray-400 mb-8 leading-relaxed max-w-xl">
+              Especializado na criação de plataformas modernas,
+              sistemas administrativos e aplicações escaláveis utilizando
+              React, TypeScript e Firebase.
+            </p>
+
+            {/* BOTÕES SOCIAIS */}
+            <div className="flex flex-wrap gap-4">
+
+              <a
+                href="https://wa.me/244950377204"
+                target="_blank"
+                className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl"
+              >
+                WhatsApp
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/juliano-mabiala-a0562824a"
+                target="_blank"
+                className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl"
+              >
+                LinkedIn
+              </a>
+
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-xl"
+              >
+                Facebook
+              </a>
+
+            </div>
+          </div>
+
+          {/* LADO DIREITO - IMAGEM */}
+          <div className="flex justify-center">
+            <div className="w-72 h-72 rounded-full bg-purple-700/30 flex items-center justify-center text-6xl">
+              👨🏾‍💻
+            </div>
+          </div>
+
         </section>
 
         {/* SOBRE */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold text-purple-400 mb-6">Sobre Mim</h2>
-          <p className="text-gray-300 leading-relaxed max-w-4xl">
-            Sou desenvolvedor focado na criação de sistemas digitais completos,
-            desde a interface até a integração com banco de dados em tempo real.
-            Trabalho com React, TypeScript, Firebase e arquitetura moderna de aplicações.
-            Tenho experiência desenvolvendo plataformas administrativas,
-            sistemas de análise e websites empresariais com foco em desempenho e organização.
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-purple-400 mb-6">
+            Sobre Mim
+          </h2>
+
+          <p className="text-gray-300 max-w-4xl leading-relaxed">
+            Sou desenvolvedor focado na construção de sistemas digitais completos,
+            desde a interface até integração com banco de dados em tempo real.
+            Tenho experiência com React, Firebase e arquitetura moderna de aplicações.
+            Meu foco é código limpo, organização e criação de produtos funcionais.
           </p>
         </section>
 
-        {/* TECNOLOGIAS */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold text-purple-400 mb-6">Tecnologias & Stack</h2>
-          <div className="grid md:grid-cols-3 gap-6 text-gray-300">
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">React</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">TypeScript</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Vite</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Firebase</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Firestore</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">TailwindCSS</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Git & GitHub</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Deploy e CI/CD</div>
-            <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">Integrações API</div>
+        {/* STACK */}
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-purple-400 mb-8">
+            Tecnologias
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              "React",
+              "TypeScript",
+              "Vite",
+              "Firebase",
+              "TailwindCSS",
+              "Git & GitHub"
+            ].map((tech, index) => (
+              <div
+                key={index}
+                className="bg-black/40 border border-purple-700 rounded-2xl p-6 text-center"
+              >
+                {tech}
+              </div>
+            ))}
           </div>
         </section>
 
         {/* PROJETOS */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold text-purple-400 mb-6">Projetos Desenvolvidos</h2>
+        <section className="mb-24">
+          <h2 className="text-3xl font-bold text-purple-400 mb-8">
+            Projetos
+          </h2>
+
           <div className="grid md:grid-cols-3 gap-8">
+
             <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">JutemaGo</h3>
+              <h3 className="text-xl font-semibold text-purple-300 mb-4">
+                JutemaGo
+              </h3>
               <p className="text-gray-400">
-                Plataforma digital para criadores de conteúdo com painel administrativo,
-                autenticação de usuários e estrutura escalável utilizando Firebase.
+                Plataforma para criadores de conteúdo com painel administrativo
+                e sistema de autenticação.
               </p>
             </div>
 
             <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">JL Infinity SPA</h3>
+              <h3 className="text-xl font-semibold text-purple-300 mb-4">
+                JL Infinity SPA
+              </h3>
               <p className="text-gray-400">
-                Website empresarial moderno com identidade visual forte e foco em presença digital
-                profissional e conversão.
+                Website empresarial moderno com foco em presença digital e conversão.
               </p>
             </div>
 
             <div className="bg-black/40 border border-purple-700 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">Sistema de Análise Aviador</h3>
+              <h3 className="text-xl font-semibold text-purple-300 mb-4">
+                Sistema Aviador
+              </h3>
               <p className="text-gray-400">
-                Sistema baseado em padrões estatísticos para análise e projeção de resultados,
-                com estrutura organizada e lógica de processamento eficiente.
+                Sistema de análise baseado em padrões estatísticos.
               </p>
             </div>
+
           </div>
         </section>
 
-        {/* VISÃO */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold text-purple-400 mb-6">Visão Profissional</h2>
-          <p className="text-gray-300 leading-relaxed max-w-4xl">
-            Meu foco é construir produtos digitais sólidos, com código limpo,
-            arquitetura escalável e experiência de usuário bem definida.
-            Busco evolução constante, organização estrutural e soluções
-            que realmente funcionam no mundo real.
-          </p>
-        </section>
+        {/* RODAPÉ */}
+        <footer className="text-center text-gray-500 mt-16">
+          © {new Date().getFullYear()} Juliano Mabiala — Todos os direitos reservados.
+        </footer>
 
-        {/* CONTATO */}
-        <section className="text-center mt-16">
-          <a
-            href="mailto:seuemail@email.com"
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-2xl text-lg shadow-lg inline-block"
-          >
-            Entrar em Contato
-          </a>
-        </section>
-      </motion.div>
+      </div>
     </div>
   );
 }
